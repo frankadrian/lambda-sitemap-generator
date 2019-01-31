@@ -20,7 +20,7 @@ Finally it pings google to say a new sitemap was generated for this website.
 - **base_path** - base url eg: / or /username/
 
 
-## Setup using serverless and aws
+## Setup using serverless and AWS
 1) npm install -g serverless
 1) npm install
 1) name your service and select region in `serverless.yml`
@@ -29,6 +29,16 @@ Finally it pings google to say a new sitemap was generated for this website.
 to deploy only the function to aws (quicker):
 `serverless deploy -f sitemap` 
 
+
+## More on the setup on AWS using Virtual Private Cloud (VPC)
+Since i want to connect to a rds database, which is in a VPC, i setup the lambda inside the same vpc.
+The VPC was already setup with a internet facing (igw) subnet so now i was able to talk to rds,
+but not to ping google as the vpc has no internet access yet.
+
+To allow your VPC internet access create a NAT Gateway with the internet facing subnet and a new Elastic IP.
+Then add a new private subnet (for each region) pointing to the nat gateway.
+This private subnet is what you select in your lambda function and you can connect to services inside your 
+VPC and talk connect to the internet, google in this example :)
 
 
 ## Credits
