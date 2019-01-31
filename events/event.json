@@ -1,0 +1,5 @@
+{
+  "site_url": "https://frankadrian.net",
+  "sitemap_bucket": "mys3bucket",
+  "base_path": "/",
+}
